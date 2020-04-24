@@ -77,43 +77,10 @@ SWektor<STyp, ROZMIAR> W2;
 return W2;
   }
 
-template<typename STyp, int ROZMIAR>
-bool SWektor<STyp, ROZMIAR>::operator == (const SWektor<STyp, ROZMIAR> & W2) const{
-  for(int i=0;i<ROZMIAR;i++){
-    STyp wartosc=W2._tab[i]-_tab[i];
-    if(0,01<wartosc)
-    return false;
-    else;
-  }
- return true;
-  }
-
-template<typename STyp, int ROZMIAR>
-bool SWektor<STyp, ROZMIAR>::operator != (const SWektor<STyp, ROZMIAR> & W2) const{
-  for(int i=0;i<ROZMIAR;i++){
-    STyp wartosc=W2._tab[i]-_tab[i];
-    if(0,01>wartosc)
-    return false;
-    else;
-  }
- return true;
-  }
-
-template<typename STyp, int ROZMIAR>
-STyp SWektor<STyp, ROZMIAR>::dlugosc() const{
-  STyp a=0;
-  for(int i=0;i<ROZMIAR;i++){
-    STyp skl=(pow((_tab[i]),(2)));
-    a+=skl;
-  }
-  a=sqrt(a);
-return a;
-  }  
-
 template<typename STyp, int ROZMIAR>  
 SWektor<STyp, ROZMIAR> operator * (double l1, SWektor<STyp, ROZMIAR> W2){
   for(int ind=0;ind<ROZMIAR;ind++){
-  W2[ind]=l1*W2[ind];
+  W2[ind]=W2[ind]*l1;
 }
 return W2;
 }

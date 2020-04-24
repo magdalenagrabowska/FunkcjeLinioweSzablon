@@ -22,10 +22,7 @@ class SWektor {
 
   SWektor<STyp, ROZMIAR>  operator * (double li) const;
 
-  bool operator == (const SWektor<STyp, ROZMIAR>  & W2) const;
-  bool operator != (const SWektor<STyp, ROZMIAR>  & W2) const;
-
-  STyp dlugosc() const;   
+ 
    
   const STyp & operator[] (unsigned int index) const; 
   STyp & operator[] (unsigned int index);

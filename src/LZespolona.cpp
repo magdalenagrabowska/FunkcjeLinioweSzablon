@@ -44,7 +44,7 @@ LZespolona operator * (LZespolona Skl1, LZespolona Skl2){
   Wynik.im=(Skl1.re*Skl2.im)+(Skl1.im*Skl2.re);
   return Wynik;
 }
-LZespolona operator * (LZespolona Skl1, double liczba){
+LZespolona operator * (LZespolona Skl1, double liczba ){
   LZespolona Wynik(0);
   Wynik.re=Skl1.re*liczba;
   Wynik.im=Skl1.im*liczba;

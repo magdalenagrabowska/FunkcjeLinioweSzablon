@@ -1,7 +1,6 @@
 #include <iostream>
 #include "SWektor.hh"
-#include "SWektor.cpp"
-#include"LZespolona.hh"
+#include "LZespolona.hh"
 # include "rozmiar.h"
 
 using namespace std;
@@ -32,11 +31,11 @@ void Test_SzablonWektor_double()
        << endl;
   
   W_wynik = W*3-W;
-  cout << "  Wyswietlenie wyniku odejmowanka" << endl
+  cout << "  Wyswietlenie wyniku  W*3-W" << endl
        << "        " << W_wynik << endl
        << endl; 
   W_wynik = W*4.5+W;
-  cout << "  Wyswietlenie wyniku dodawanka" << endl
+  cout << "  Wyswietlenie wyniku W*4.5+W" << endl
        << "        " << W_wynik << endl
        << endl; 
   
@@ -45,10 +44,6 @@ void Test_SzablonWektor_double()
        << "        " <<mnozenie<< endl
        << endl; 
 
- double dlugosc=W.dlugosc();
-  cout << "  Wyswietlenie dlugosci wektora" << endl
-       << "        " <<dlugosc<< endl
-       << endl; 
 }
 
 
