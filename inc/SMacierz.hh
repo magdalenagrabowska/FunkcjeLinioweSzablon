@@ -1,45 +1,43 @@
 #ifndef MACIERZ_HH
 #define MACIERZ_HH
 
-#include "rozmiar.h"
 #include <iostream>
-#include "Wektor.hh"
-#include<algorithm>
+#include "SWektor.hh"
+#include <string.h>
 /*
- *  Jest to klasa macierz, opisuje 3 rzedy tablic jednowymiarowych.
+ *  Jest to klasa macierz, opisuje rzedy SWymiar tablic jednowymiarowych.
  *  Wraz z klasa wektor posluzy do rozwiazywania rownan liniowych.
  */
-class MacierzKw {
-  Wektor Wiersz[ROZMIAR]; // 3 wektory skladajace sie na macierz, bedace wierszami owej macierzy
+template<typename STyp, int SWymiar>
+class SMacierzKw{
+  SWektor<STyp, SWymiar> Wiersz [SWymiar]; // 3 wektory skladajace sie na macierz, bedace wierszami owej macierzy
   public:
-  MacierzKw(){ 
-    for(int i=0;i<3;i++){
-     for(int j=0;j<3;j++){
+  SMacierzKw(){ 
+    for(int i=0;i<SWymiar;i++){
+     for(int j=0;j<SWymiar;j++){
      Wiersz[i][j]=0; 
     }
   }
   }
   void transpozycja(); 
   void odwrotnosc(); 
-  double wyznacznikSarrus();
-  double wyznacznikLaplace();
-  double wyznacznikGauss(); //za pomoca metody laplacea,gaussa,sarrusa
-  MacierzKw operator + (const MacierzKw & M)const;
-  MacierzKw operator - (const MacierzKw & M)const;
-  MacierzKw operator * (const MacierzKw & M)const;
-  MacierzKw operator * (double l)const;
-  Wektor operator * (const Wektor & W)const;
-  bool operator == (const MacierzKw & M) const;
-  bool operator != (const MacierzKw & M) const;
+  STyp wyznacznikGauss()const; 
+  /*SMacierzKw<STyp,SWymiar-1> minor(int i, int j)const;*/
+  SMacierzKw<STyp, SWymiar> operator + (const SMacierzKw<STyp, SWymiar> & M)const;
+  SMacierzKw<STyp, SWymiar> operator - (const SMacierzKw<STyp, SWymiar> & M)const;
+  
+  SMacierzKw<STyp, SWymiar> operator * (const SMacierzKw<STyp,SWymiar> & M)const;
+  SMacierzKw<STyp, SWymiar>  operator * (double l)const;
+  SWektor<STyp, SWymiar> operator * (const SWektor<STyp,SWymiar> & W)const;
 
-  const Wektor & operator[] (int Wie) const;
-  Wektor & operator[] (int Wie);
+  const SWektor<STyp, SWymiar> & operator[] (unsigned int Wie) const;
+  SWektor<STyp, SWymiar> & operator[] (unsigned int Wie);
 
-  const double & operator() (int Wie, int Kol) const;
-  double & operator() (int Wie, int Kol);
+  const STyp & operator() (unsigned int Wie, unsigned int Kol) const;
+  STyp & operator() (unsigned int Wie,unsigned int Kol);
 
- Wektor zwroc_kolumne(int ind)const; 
- void zmien_kolumne(int ind); 
+ SWektor<STyp, SWymiar> zwroc_kolumne(int ind)const; 
+ void zmien_kolumne(SWektor<STyp,SWymiar> W, int i); 
 };
 
 /*
@@ -61,8 +59,8 @@ class MacierzKw {
   *
   *  Funkcja wczytuje i zapisuje do tablic wartosci macierzy
   */
-
-std::istream& operator >> (std::istream &strm, MacierzKw &Mac);
+template<typename STyp, int SWymiar>
+std::istream& operator>>(std::istream &strm, SMacierzKw<STyp, SWymiar> &Mac);
 
 /*
   *  Przeciazenie strumienia wyjsciowego.Funkcja wyswietla dla uzytkownika
@@ -82,7 +80,8 @@ std::istream& operator >> (std::istream &strm, MacierzKw &Mac);
   *
   *  Funkcja wyswietla na wyjsciu standardowym wartosci macierzy.
   */
-std::ostream& operator << (std::ostream &strm, const MacierzKw &Mac);
+template<typename STyp, int SWymiar>
+std::ostream& operator<<(std::ostream &strm, const SMacierzKw<STyp, SWymiar> &Mac);
 
 
 #endif

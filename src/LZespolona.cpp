@@ -14,8 +14,14 @@ using std::cin;
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
 LZespolona &LZespolona::operator=(double liczba){
+  if(liczba==1){
+    this->re=liczba;
+    this->im=1;
+  }
+else{
 this->re=liczba;
 this->im=0;
+}
 return *this;
 }
 LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
@@ -31,13 +37,22 @@ LZespolona LZespolona::operator +=(const LZespolona &Skl1){
   this->im=this->im+Skl1.im;
   return *this;
 }
+LZespolona LZespolona::operator *=(const LZespolona &Skl1){
+  this->re=this->re*Skl1.re;
+  this->im=this->im*Skl1.im;
+  return *this;
+}
 LZespolona operator - (LZespolona Skl1,LZespolona Skl2){
   LZespolona Wynik(0);
   Wynik.re=Skl1.re-Skl2.re;
   Wynik.im=Skl1.im-Skl2.im;
   return Wynik;
 }
-
+LZespolona LZespolona::operator -(){
+  this->re=-this->re;
+  this->im=-this->im;
+  return *this;
+}
 LZespolona operator * (LZespolona Skl1, LZespolona Skl2){
   LZespolona Wynik(0);
   Wynik.re=(Skl1.re*Skl2.re)-(Skl1.im*Skl2.im);
@@ -50,20 +65,32 @@ LZespolona operator * (LZespolona Skl1, double liczba ){
   Wynik.im=Skl1.im*liczba;
   return Wynik;
 }
-double dzielnik(LZespolona Skl1, LZespolona Skl2){
-  double a=0;
-  a=Skl2.re*Skl2.re+Skl2.im*Skl2.im;
-  return a;
-}
-
-LZespolona operator / (LZespolona Skl1, LZespolona Skl2){
-  LZespolona Wynik(0);
-  double a=0;
-  a=dzielnik(Skl1,Skl2);
-  Wynik.re=(Skl1.re*Skl2.re+Skl1.im*Skl2.im)/a;
-  Wynik.im=(Skl1.im*Skl2.re-Skl1.re*Skl2.im)/a;
+LZespolona operator / (LZespolona  Skl1, LZespolona  Skl2){
+  LZespolona Wynik;
+  LZespolona Sprzez;
+  Sprzez = sprzezenie(Skl2);
+  Wynik.re = (Skl1.re * Sprzez.re - (-1) * Skl1.im * Sprzez.im)/modulKw(Skl2);
+  Wynik.im = (Skl1.re * Sprzez.im + Skl1.im * Sprzez.re)/modulKw(Skl2);
   return Wynik;
   
+}
+LZespolona sprzezenie (LZespolona  Skl){
+  LZespolona Sprzez;
+  Sprzez.re = Skl.re;
+  Sprzez.im = (-1)*Skl.im;
+  return Sprzez;
+}
+double modulKw (LZespolona Skl){
+  double Wynik;
+  Wynik = Skl.re * Skl.re + Skl.im * Skl.im;
+  return Wynik;
+}
+
+LZespolona  operator / (LZespolona  Dzielna, double  Dzielnik_Liczba){
+    LZespolona Wynik;
+    Wynik.re = Dzielna.re / Dzielnik_Liczba;
+    Wynik.im = Dzielna.im / Dzielnik_Liczba;
+    return Wynik;
 }
 bool operator ==(LZespolona Skl1,LZespolona Skl2){
 if((Skl1.re==Skl2.re)&&(Skl1.im==Skl2.im))

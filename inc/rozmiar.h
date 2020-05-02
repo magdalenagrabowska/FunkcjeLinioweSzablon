@@ -1,6 +1,8 @@
 #ifndef ROZMIAR_H
 #define ROZMIAR_H
+#include<cmath>
+#include<cstdlib>
 
-#define ROZMIAR 6
+#define ROZMIAR 5
 
 #endif

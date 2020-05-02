@@ -18,6 +18,8 @@ LZespolona operator +=(const LZespolona &Skl1);
 explicit LZespolona(double liczba): re(liczba), im(0) {}
 LZespolona &operator=(double liczba);
 LZespolona(){im=0;re=0;}
+LZespolona operator -();
+LZespolona operator *=(const LZespolona &Skl1);
 };
 
 
@@ -26,7 +28,10 @@ LZespolona(){im=0;re=0;}
  */
 
 /*przeciazenie operacji na liczbach zespolonych */
-
+LZespolona  operator / (LZespolona  Dzielna, double  Dzielnik_Liczba);
+double modulKw (LZespolona Skl);
+LZespolona sprzezenie (LZespolona  Skl);
+LZespolona operator / (LZespolona  Skl1, LZespolona  Skl2);
 LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2);
 LZespolona operator - (LZespolona Skl1, LZespolona Skl2);
 LZespolona operator * (LZespolona Skl1, LZespolona Skl2);

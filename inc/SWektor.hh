@@ -6,21 +6,21 @@
 #include<cmath>
 /*
  *  Ta klasa opisuje wektor.
- *  Wektor jest rozmiarow tablicy 1xwartosc zdefiniowana ROZMIAR.
+ *  Wektor jest SWymiarow tablicy 1xwartosc zdefiniowana SWymiar.
  *  Moze byc uzyty przy wyrazach wolnych albo przy niewiadomych.
  *  
  */
-template<typename STyp, int ROZMIAR>
+template<typename STyp, int SWymiar>
 class SWektor {
-  STyp _tab[ROZMIAR];
+  STyp _tab [SWymiar];
   public:
   SWektor(){for(STyp &tab: _tab) tab=0; }
-  SWektor<STyp, ROZMIAR> operator + (const SWektor<STyp, ROZMIAR> & W2) const;
-  SWektor<STyp, ROZMIAR>  operator - (const SWektor<STyp, ROZMIAR>  & W2) const;
+  SWektor<STyp, SWymiar> operator + (const SWektor<STyp, SWymiar> & W2) const;
+  SWektor<STyp, SWymiar>  operator - (const SWektor<STyp, SWymiar>  & W2) const;
  
-  STyp operator * (const SWektor<STyp, ROZMIAR>  & W2) const;
+  STyp operator * (const SWektor<STyp, SWymiar>  & W2) const;
 
-  SWektor<STyp, ROZMIAR>  operator * (double li) const;
+  SWektor<STyp, SWymiar>  operator * (double li) const;
 
  
    
@@ -49,8 +49,8 @@ class SWektor {
   *
   *  Funkcja wczytuje do klasy wektor podane wartosci
   */
- template<typename STyp, int ROZMIAR>
- std::istream& operator >> (std::istream &Strm, SWektor<STyp, ROZMIAR>  &Wek);
+ template<typename STyp, int SWymiar>
+ std::istream& operator >> (std::istream &Strm, SWektor<STyp, SWymiar>  &Wek);
 
 /*
   *  Przeciazenie strumienia wyjsciowego.Funkcja wyswietla dla uzytkownika
@@ -70,9 +70,9 @@ class SWektor {
   *
   *  Funkcja wyswietla na wyjsciu standardowym wartosci wektora.
   */
-template<typename STyp, int ROZMIAR>
-std::ostream& operator << (std::ostream &strm, const  SWektor<STyp, ROZMIAR> &Wek);
+template<typename STyp, int SWymiar>
+std::ostream& operator << (std::ostream &strm, const  SWektor<STyp, SWymiar> &Wek);
 
-template<typename STyp, int ROZMIAR>
-SWektor<STyp,ROZMIAR>  operator * (double l1, SWektor<STyp, ROZMIAR> W2);
+template<typename STyp, int SWymiar>
+SWektor<STyp, SWymiar>  operator * (double l1, SWektor<STyp, SWymiar> W2);
 #endif
