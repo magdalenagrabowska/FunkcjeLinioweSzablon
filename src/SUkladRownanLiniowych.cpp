@@ -51,7 +51,7 @@ const SWektor<STyp,SWymiar> &SUkladRownanL<STyp,SWymiar>::get_b() const {
     A[i][j]=in[i][j];
     }
  }
-  A.transpozycja();
+ A.transpozycja();
  }
 template<typename STyp, int SWymiar>
  void SUkladRownanL<STyp,SWymiar>::set_b(const SWektor<STyp,SWymiar> & in){
@@ -65,6 +65,7 @@ SWektor<STyp,SWymiar> Wynik;
 STyp porownik; porownik=0;
 STyp wyniczek; wyniczek=0;
 STyp X=A.wyznacznikGauss();
+
 if(X==porownik){
   cout<<"brak rozwiazania"<<endl;
   exit(2);
@@ -72,7 +73,8 @@ if(X==porownik){
 for(int i=0;i<SWymiar;i++){
    SMacierzKw<STyp,SWymiar> M=A;
    M.zmien_kolumne(b,i); 
-   wyniczek=M.wyznacznikGauss()/X;
+   STyp wyzn=M.wyznacznikGauss();
+   wyniczek=wyzn/X;
    Wynik[i]=wyniczek;
 }
 

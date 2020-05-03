@@ -73,38 +73,24 @@ void SMacierzKw<STyp,SWymiar>::transpozycja(){
 
 template<typename STyp, int SWymiar>
 STyp SMacierzKw<STyp,SWymiar>::wyznacznikGauss()const{
-  STyp porownik;
-  porownik=0;
-  SMacierzKw<STyp,SWymiar> M;
-  for(int i=0;i<SWymiar;i++){
-   M.Wiersz[i]=Wiersz[i];
- }
+  
+  SMacierzKw<STyp,SWymiar> M=(*this);
+  
   STyp det;
   det=1;
   STyp mnoznik;
-  mnoznik=1;
-  for(int i=0; i<SWymiar; ++i) {
-         if(M.Wiersz[i][i] == porownik) {
-              int j;
-              for(j=i+1; j<SWymiar; ++j) // znajdź lepszy wiersz
-                   if(M.Wiersz[j][i]!=porownik) {
-                       SWektor<STyp,SWymiar> tmp = M.Wiersz[i];
-                        M.Wiersz[i] = M.Wiersz[j];
-                        M.Wiersz[j] = tmp;
-                        det = -det;
-                        break;
-                   }
-         }
-  }
+  mnoznik=0;
  for(int i=0;i<SWymiar-1;i++){
    for(int j=i+1;j<SWymiar;j++){
     mnoznik=M.Wiersz[j][i]/M.Wiersz[i][i];
     for(int k=i;k<SWymiar;k++)
     M.Wiersz[j][k]=M.Wiersz[j][k]-mnoznik*M.Wiersz[i][k];
+    
    }
  }
- for(int z=0;z<SWymiar;++z){
-   det*=M.Wiersz[z][z];
+ for(int z=0;z<SWymiar;z++){
+   det=det*M.Wiersz[z][z];
+   
  }
  return det;
 }

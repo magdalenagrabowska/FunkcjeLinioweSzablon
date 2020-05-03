@@ -116,10 +116,10 @@ W_Wynik=M*W;
   cout << "  Wyswietlenie wyniku:M*W " << endl
        << W_Wynik;
        cout<< endl; */
- /* LZespolona wyzn=M.wyznacznikGauss();
+  LZespolona wyzn=M.wyznacznikGauss();
        cout << "  Wyswietlenie wyznacznika macierzy " << endl
        << wyzn;
-       cout<< endl;    
+       cout<< endl;  /*  
   M.transpozycja();
   cout << "  Wyswietlenie transpozycji macierzy " << endl
        << M;
